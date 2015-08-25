@@ -141,8 +141,13 @@ class MapViewController: UIViewController,MKMapViewDelegate {
                 if location.lastName != nil {
                     lastName = location.lastName!
                 }
+                var mediaURL = ""
+                if location.mediaURL != nil {
+                    mediaURL = location.mediaURL!
+                }
                 let mapLocation = MapLocation(title: "\(firstName) \(lastName)",
                     locationName: locationName,
+                    mediaURL: mediaURL,
                     coordinate: CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!))
                 mapView.addAnnotation(mapLocation)
             }
@@ -237,5 +242,20 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     func mapView(mapView: MKMapView!, didUpdateUserLocation
         userLocation: MKUserLocation!) {
             mapView.centerCoordinate = userLocation.location.coordinate
+    }
+    
+    /// the right accesory view in the annotation has been pressed and th elink of the location is opened in a web view
+    /// :param: mapView map
+    /// :param: annotationView annotation view
+    /// :param: calloutAccessoryControlTapped control
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
+        calloutAccessoryControlTapped control: UIControl!) {
+            if control == view.rightCalloutAccessoryView {
+                if let mapLocation = view.annotation as? MapLocation {
+                    if mapLocation.mediaURL != "" {
+                        UIApplication.sharedApplication().openURL(NSURL(string: mapLocation.mediaURL)!)
+                    }
+                }
+            }
     }
 }

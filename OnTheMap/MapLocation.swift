@@ -13,10 +13,11 @@ class MapLocation: NSObject, MKAnnotation {
     let title: String
     let locationName: String
     let coordinate: CLLocationCoordinate2D
-    
-    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
+    let mediaURL: String
+    init(title: String, locationName: String, mediaURL: String, coordinate: CLLocationCoordinate2D) {
         self.title = title
         self.locationName = locationName
+        self.mediaURL = mediaURL
         self.coordinate = coordinate
         
         super.init()
