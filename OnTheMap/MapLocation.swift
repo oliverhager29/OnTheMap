@@ -24,6 +24,6 @@ class MapLocation: NSObject, MKAnnotation {
     }
     
     var subtitle: String {
-        return locationName
+        return mediaURL
     }
 }

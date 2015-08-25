@@ -39,10 +39,10 @@ The app displays downloaded data in a tabbed view with a map and a table. The ap
 7. Does the map view contain a pin for each of the locations that were downloaded?
 The map view has a pin for each student in the correct location.
 
-*****8. When the pins in the map are tapped, is a pin annotation displayed with the student’s name and the link that the student posted?
+8. When the pins in the map are tapped, is a pin annotation displayed with the student’s name and the link that the student posted?
 Tapping the pins shows an annotation with the student's name and the link the student posted.
 
-*****9. If the pin annotation is tapped, is the link opened in Safari?
+9. If the pin annotation is tapped, is the link opened in Safari?
 Tapping a student’s pin annotation opens the default device browser to the student’s link.
 
 10. Does the table view contain a row for each student location that was downloaded with the student’s name displayed?
