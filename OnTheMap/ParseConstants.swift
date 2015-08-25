@@ -38,8 +38,8 @@ extension ParseClient {
         static let LastName = "lastName"
         static let MapString = "mapString"
         static let MediaURL = "mediaURL"
-        static let Latitude = "Latitude"
-        static let Longitude = "Longitude"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
         
         // MARK: General
         static let StatusMessage = "error"

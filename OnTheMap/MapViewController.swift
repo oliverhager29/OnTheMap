@@ -13,9 +13,6 @@ import MapKit
 
 /// MapViewController - map that shows the locations of the other students
 class MapViewController: UIViewController,MKMapViewDelegate {
-    /// locations of the other students
-    var locations: [StudentLocation] = []
-    
     /// error alert when having a problem getting public user data of the current logged in Udacity account
     var getPublicUserDataAlert: UIAlertController!
     
@@ -118,7 +115,38 @@ class MapViewController: UIViewController,MKMapViewDelegate {
                 })
             }
         }
-        reloadLocations()
+        if StudentLocationRepository.locations.count == 0 {
+            reloadLocations()
+        }
+        else {
+            addAnnotations(self.mapView, locations: StudentLocationRepository.locations)
+        }
+    }
+    
+    /// add annotations to map
+    /// :param: mapview map view
+    /// :patam: locations for which annotations are created
+    func addAnnotations(mapView: MKMapView!, locations: [StudentLocation]) {
+        for location in locations {
+            if location.latitude != nil && location.longitude != nil {
+                var locationName = ""
+                if location.mapString != nil {
+                    locationName = location.mapString!
+                }
+                var firstName = ""
+                if location.firstName != nil {
+                    firstName = location.firstName!
+                }
+                var lastName = ""
+                if location.lastName != nil {
+                    lastName = location.lastName!
+                }
+                let mapLocation = MapLocation(title: "\(firstName) \(lastName)",
+                    locationName: locationName,
+                    coordinate: CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!))
+                mapView.addAnnotation(mapLocation)
+            }
+        }
     }
     
     /// reload the other students locations (refresh button is pressed)
@@ -129,14 +157,9 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         })
         ParseClient.sharedInstance().getStudentLocations { locations, error in
             if let locations = locations {
-                self.locations = locations
+                StudentLocationRepository.locations = locations
                 dispatch_async(dispatch_get_main_queue()) {
-                    for location in locations {
-                        let mapLocation = MapLocation(title: "\(location.firstName!) \(location.lastName!)",
-                            locationName: location.mapString!,
-                            coordinate: CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!))
-                        self.mapView.addAnnotation(mapLocation)
-                    }
+                    self.addAnnotations(self.mapView, locations: locations)
                     self.mapView.delegate = self
                     self.mapActivityIndicator.stopAnimating()
                 }

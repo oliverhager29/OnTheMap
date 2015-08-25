@@ -11,9 +11,6 @@ import UIKit
 
 /// TableViewController - shows a table of student locations. Pressing on a row opens a web pages with the student's link. The list can be reloaded, a new location for the current logged in user can be posted and it can be logged out of the Udacity account.
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    /// students' locations
-    var locations: [StudentLocation] = []
-    
     /// error alert when there is a problem retrieving all locations
     var alert: UIAlertController!
     
@@ -48,7 +45,14 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableActivityIndicator.startAnimating()
         ParseClient.sharedInstance().getStudentLocations { locations, error in
             if let locations = locations {
-                self.locations = locations
+                StudentLocationRepository.locations = locations.sorted({
+                    if $0.firstName == $1.firstName {
+                        return $0.lastName < $1.lastName
+                    }
+                    else {
+                        return $0.firstName < $1.firstName
+                    }
+                })
                 dispatch_async(dispatch_get_main_queue()) {
                     self.locationsTableView.reloadData()
                     self.tableActivityIndicator.stopAnimating()
@@ -68,7 +72,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     /// :param: section section in table (there is only one)
     /// :returns: number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return StudentLocationRepository.locations.count
     }
 
     /// initializes table cell
@@ -78,7 +82,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         /* Get cell type */
         let cellReuseIdentifier = "LocationTableViewCell"
-        let location = self.locations[indexPath.row]
+        let location = StudentLocationRepository.locations[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! UITableViewCell
         
         /* Set cell defaults */
@@ -100,7 +104,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     /// :param: tableView table view
     /// :param: indexPath row
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let location = locations[indexPath.row]
+        let location = StudentLocationRepository.locations[indexPath.row]
         if let url = location.mediaURL {
             UIApplication.sharedApplication().openURL(NSURL(string: url)!)
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 /// UserData - public user data of the Udacity account
-class UserData {
+struct UserData {
     /// user name of the Udacity account
     var username: String
     /// user id

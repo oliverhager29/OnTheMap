@@ -62,7 +62,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     })
                 }
             }
-
         }
         else
         {
@@ -87,28 +86,67 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         self.failedLoginAlert.view.addSubview(imageView)
     }
     
+    /// Facebook login
+    /// :param: loginButton Facebook login button
+    /// :param: result login result
+    /// :param: error login error
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         println("User Logged In")
         
         if ((error) != nil)
         {
             // Process error
+            self.displayError(error.description)
         }
         else if result.isCancelled {
             // Handle cancellations
+            
         }
         else {
             // If you ask for multiple permissions at once, you
             // should check if specific permissions missing
             if result.grantedPermissions.contains("email")
             {
-                // Do work
+                UdacityClient.sharedInstance().createSessionWithFacebook(FBSDKAccessToken.currentAccessToken().tokenString!){ (success, errorString) in
+                    if success {
+                        println("Login successful")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.completeLogin()
+                        })
+                        
+                    } else {
+                        let tmpErrorString = errorString
+                        println("Login failed: \(tmpErrorString)")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.displayError(tmpErrorString)
+                        })
+                    }
+                }
             }
         }
     }
     
+    /// Facebook logout
+    /// :param: loginButton Facebook login button
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         println("User Logged Out")
+        self.loginActivityIndicator.startAnimating()
+        UdacityClient.sharedInstance().deleteSession() { (success, errorString) in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.loginActivityIndicator.stopAnimating()
+            })
+            if success {
+                println("Logout successful")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                })
+            }
+            else {
+                println("Logout failed: \(errorString)")
+            }
+        }
+        
     }
     
     /// perform login (create UDacity session)
