@@ -14,6 +14,8 @@ import Foundation
 
 extension ParseClient {
     /// get student locations
+    /// :param: skip offset for paging
+    /// :param: limit page size
     /// :param: completionHandler handles error/result
     func getStudentLocations(skip: Int, limit: Int, completionHandler: (result: [StudentLocation]?, errorString: String?) -> Void) {
         let request = NSMutableURLRequest(URL: NSURL(string: ParseClient.Constants.BaseURL+"?\(ParseClient.ParameterKeys.Limit)=\(limit)&\(ParseClient.ParameterKeys.Skip)=\(skip)&\(ParseClient.ParameterKeys.Order)=\(ParseClient.JSONResponseKeys.FirstName),\(ParseClient.JSONResponseKeys.LastName)")!)
@@ -65,6 +67,8 @@ extension ParseClient {
     }
     
     /// get student location by criteria
+    /// :param: skip offset for paging
+    /// :param: limit page size
     /// :param: criteriaJSON criteria as JSON key/value pairs
     /// :param: completionHandler handles error/result
     func getStudentLocationsByCriteria(skip: Int, limit: Int, criteriaJSON: String, completionHandler: (result: [StudentLocation]?, errorString: String?) -> Void) {
