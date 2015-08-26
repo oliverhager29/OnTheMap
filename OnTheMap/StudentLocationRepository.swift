@@ -9,5 +9,7 @@
 import Foundation
 
 class StudentLocationRepository {
+    static var pageIndex = 0
+    static let pageSize = 100
     static var locations : [StudentLocation] = []
 }

@@ -123,7 +123,7 @@ class TestViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func getStudentLocations() -> Void {
         let outputTextView = self.outputTextView
-        ParseClient.sharedInstance().getStudentLocations() { (result, errorString) -> Void in
+        ParseClient.sharedInstance().getStudentLocations(0, limit: 100) { (result, errorString) -> Void in
             if(errorString != nil) {
                 println("getStudentLocation failed: \(errorString)")
             }
@@ -142,7 +142,7 @@ class TestViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func queryStudentLocations() -> Void {
         let outputTextView = self.outputTextView
-        ParseClient.sharedInstance().getStudentLocationsByCriteria(queryCriteria.text) { (result, errorString) -> Void in
+        ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 100, criteriaJSON: queryCriteria.text) { (result, errorString) -> Void in
             if(errorString != nil) {
                 println("getStudentLocation failed: \(errorString)")
             }
