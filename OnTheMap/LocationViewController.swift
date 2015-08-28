@@ -21,8 +21,13 @@ class LocationViewController: UIViewController {
     var geoCodingAlert: UIAlertController!
     
     /// activity indicator when looking up the location for a location string
+    /// "Where are you studying today?" labels
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label3: UILabel!
     @IBOutlet weak var locationActivityIndicator: UIActivityIndicatorView!
-    
+    /// find on the map button
+    @IBOutlet weak var findOnTheMapButton: UIButton!
     /// text field for the location string
     @IBOutlet weak var locationTextField: UITextField!
     
@@ -57,7 +62,7 @@ class LocationViewController: UIViewController {
         if(segue.identifier == "findOnMap") {
             if let controller = segue.destinationViewController as? FindOnMapViewController {
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.locationActivityIndicator.startAnimating()
+                    self.startActivityIndicator
                 })
 
                 var geoCoder = CLGeocoder()
@@ -65,7 +70,7 @@ class LocationViewController: UIViewController {
                     if((error) != nil){   
                         println("Error", error)
                         dispatch_async(dispatch_get_main_queue(), {
-                            self.locationActivityIndicator.stopAnimating()
+                            self.stopActivityIndicator()
                             self.presentViewController(self.geoCodingAlert, animated: true, completion: nil)
                         })
                     }
@@ -80,7 +85,7 @@ class LocationViewController: UIViewController {
                                 pointAnnotation.title = "\(result!.firstName) \(result!.lastName)"
                                 controller.location = StudentLocation(objectId: result!.userID, uniqueKey: result!.userID, firstName: result!.firstName, lastName: result!.lastName, mapString: self.locationTextField.text, mediaURL: result!.linkedInURL, latitude: placemark.location.coordinate.latitude, longitude: placemark.location.coordinate.longitude)
                                 dispatch_async(dispatch_get_main_queue(), {
-                                    self.locationActivityIndicator.stopAnimating()
+                                    self.stopActivityIndicator()
                                     controller.mapView?.addAnnotation(pointAnnotation)
                                     controller.mapView?.centerCoordinate = coordinates
                                     controller.mapView?.selectAnnotation(pointAnnotation, animated: true)
@@ -90,7 +95,7 @@ class LocationViewController: UIViewController {
                                 pointAnnotation.title = ""
                                 println("Get public user data failed: \(errorString)")
                                 dispatch_async(dispatch_get_main_queue(), {
-                                    self.locationActivityIndicator.stopAnimating()
+                                    self.stopActivityIndicator()
                                     self.presentViewController(self.getPublicUserDataAlert, animated: true, completion: nil)
                                 })
                             }
@@ -99,5 +104,25 @@ class LocationViewController: UIViewController {
                 })
             }
         }
+    }
+    
+    /// start activity indicator
+    func startActivityIndicator() {
+        self.locationActivityIndicator.startAnimating()
+        self.label1.alpha = 0.5
+        self.label2.alpha = 0.5
+        self.label3.alpha = 0.5
+        self.locationTextField.alpha = 0.5
+        self.findOnTheMapButton.alpha = 0.5
+    }
+    
+    /// stop activity indicator
+    func stopActivityIndicator() {
+        self.locationActivityIndicator.stopAnimating()
+        self.label1.alpha = 1.0
+        self.label2.alpha = 1.0
+        self.label3.alpha = 1.0
+        self.locationTextField.alpha = 1.0
+        self.findOnTheMapButton.alpha = 1.0
     }
 }

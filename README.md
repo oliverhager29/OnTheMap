@@ -64,8 +64,8 @@ Information Posting View
 1. Does this view prompt the user to enter a string representing their location? Does it provide a place for the user to enter a string?
 The Information Posting view clearly indicates that the user should enter a location. The text view or text field where the location string should be typed is clearly present.
 
-******2. Does the app allow users to enter a URL to be included with their location?
-he app allows users to add a URL to be included with their location. The app provides a mechanism for users to browse to the link that they would like to include.
+2. Does the app allow users to enter a URL to be included with their location?
+The app allows users to add a URL to be included with their location. The app provides a mechanism for users to browse to the link that they would like to include.
 
 3. Does the app provide a button that the user can tap to post the information to the server?
 The app provides a readily accessible "Submit" button that the user can tap to post the information to the server.
@@ -74,7 +74,7 @@ The app provides a readily accessible "Submit" button that the user can tap to p
 When a "Submit" button is pressed, the app invokes the geocode address string on CLGeocoder with a completion block that stores the resulting latitude and longitude.
 
 5. Does the app indicate activity during the geocoding?
-***** The app shows additional indications of activity, such as modifying alpha/transparency of interface elements.
+The app shows additional indications of activity, such as modifying alpha/transparency of interface elements.
 
 6. Does the app show the geocoded response on a map?
 The app zooms the map into an appropriate region.

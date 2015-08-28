@@ -40,6 +40,14 @@ class FindOnMapViewController: UIViewController, MKMapViewDelegate {
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
     }
     
+
+    
+    @IBAction func browseButtonPressed(sender: UIButton) {
+        if let url = linkTextField.text {
+            UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

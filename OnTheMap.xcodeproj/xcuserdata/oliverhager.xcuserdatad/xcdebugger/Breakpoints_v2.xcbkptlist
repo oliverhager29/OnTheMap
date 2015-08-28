@@ -374,7 +374,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/ParseConvenience.swift"
@@ -383,14 +383,14 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
-            landmarkName = "getStudentLocationsByCriteria(_:limit:criteriaJSON:completionHandler:)"
-            landmarkType = "5">
+            landmarkName = "ParseClient"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/ParseConvenience.swift"
@@ -479,8 +479,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
             endingLineNumber = "126"
-            landmarkName = "createStudentLocation(_:completionHandler:)"
-            landmarkType = "5">
+            landmarkName = "ParseClient"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -495,8 +495,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
             endingLineNumber = "120"
-            landmarkName = "ParseClient"
-            landmarkType = "3">
+            landmarkName = "getStudentLocationsByCriteria(_:limit:criteriaJSON:completionHandler:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -807,11 +807,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LocationViewController.swift"
-            timestampString = "462056421.178043"
+            timestampString = "462399201.791641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "LocationViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -839,11 +839,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LocationViewController.swift"
-            timestampString = "462056421.178043"
+            timestampString = "462399201.791641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "LocationViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -855,11 +855,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LocationViewController.swift"
-            timestampString = "462056421.178043"
+            timestampString = "462399201.791641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "LocationViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -871,11 +871,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LocationViewController.swift"
-            timestampString = "462056421.178043"
+            timestampString = "462399201.791641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "LocationViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -887,11 +887,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/LocationViewController.swift"
-            timestampString = "462056421.178043"
+            timestampString = "462399201.791641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1015,12 +1015,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/FindOnMapViewController.swift"
-            timestampString = "462056421.178043"
+            timestampString = "462400602.412434"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "didReceiveMemoryWarning()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "browseButtonPressed(_:)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -1251,7 +1251,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/UdacityConvenience.swift"
@@ -1264,14 +1264,14 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "OnTheMap.UdacityClient.deleteSession (OnTheMap.UdacityClient)((success : Swift.Bool, errorString : Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "OnTheMap"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oliverhager/Documents/udacity/OnTheMap/OnTheMap/UdacityConvenience.swift"
-                  timestampString = "462258081.72298"
+                  timestampString = "462401975.450663"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -1279,14 +1279,14 @@
                   offsetFromSymbolStart = "1716">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "OnTheMap.UdacityClient.(deleteSession (OnTheMap.UdacityClient) -&gt; ((success : Swift.Bool, errorString : Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()).(closure #1)"
                   moduleName = "OnTheMap"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oliverhager/Documents/udacity/OnTheMap/OnTheMap/UdacityConvenience.swift"
-                  timestampString = "462258081.723084"
+                  timestampString = "462401975.450766"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
@@ -1443,7 +1443,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/UdacityClient.swift"
@@ -1459,7 +1459,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/UdacityClient.swift"
@@ -1571,7 +1571,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/UdacityConvenience.swift"
@@ -1623,11 +1623,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OnTheMap/MapViewController.swift"
-            timestampString = "462174384.34086"
+            timestampString = "462401402.098656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "mapView(_:annotationView:calloutAccessoryControlTapped:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1645,6 +1645,38 @@
             startingLineNumber = "20"
             endingLineNumber = "20"
             landmarkName = "getStudentLocations(_:limit:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnTheMap/FindOnMapViewController.swift"
+            timestampString = "462400602.412434"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "browseButtonPressed(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OnTheMap/MapViewController.swift"
+            timestampString = "462401848.655892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "logoutButtonTouchUp()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

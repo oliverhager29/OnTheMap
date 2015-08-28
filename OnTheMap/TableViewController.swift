@@ -174,7 +174,23 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     /// dismiss current page (login page will be re-displayed)
     func logoutButtonTouchUp() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.tableActivityIndicator.startAnimating();
+        UdacityClient.sharedInstance().deleteSession() { (success, errorString) in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableActivityIndicator.stopAnimating()
+            })
+            if success {
+                println("Logout successful")
+                dispatch_async(dispatch_get_main_queue(), {
+                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                    self.performSegueWithIdentifier("logout", sender: controller)
+                    
+                })
+            }
+            else {
+                println("Logout failed: \(errorString)")
+            }
+        }
     }
     
     /// login button pressed

@@ -220,7 +220,8 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             if success {
                 println("Logout successful")
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                    self.performSegueWithIdentifier("logout", sender: controller)
                     
                 })
             }
