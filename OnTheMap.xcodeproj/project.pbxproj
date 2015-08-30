@@ -33,6 +33,9 @@
 		A48684C71B27DB3C00585152 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48684C61B27DB3C00585152 /* UdacityConstants.swift */; };
 		A48684C91B27DC2800585152 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48684C81B27DC2800585152 /* UdacityConvenience.swift */; };
 		A49369FB1B706886004CE026 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49369FA1B706886004CE026 /* TableViewController.swift */; };
+		A4A1B74A1B901E5900C6934A /* DistanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A1B7491B901E5900C6934A /* DistanceTableViewController.swift */; };
+		A4DD9D7E1B92A35B0086345A /* LocationCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DD9D7D1B92A35B0086345A /* LocationCollectionViewController.swift */; };
+		A4DD9D801B92A4AF0086345A /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DD9D7F1B92A4AF0086345A /* LocationCollectionViewCell.swift */; };
 		A4FCC7181B8C203500D07519 /* StudentLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FCC7171B8C203500D07519 /* StudentLocationRepository.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +80,9 @@
 		A48684C61B27DB3C00585152 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		A48684C81B27DC2800585152 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		A49369FA1B706886004CE026 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		A4A1B7491B901E5900C6934A /* DistanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceTableViewController.swift; sourceTree = "<group>"; };
+		A4DD9D7D1B92A35B0086345A /* LocationCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewController.swift; sourceTree = "<group>"; };
+		A4DD9D7F1B92A4AF0086345A /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		A4FCC7171B8C203500D07519 /* StudentLocationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +204,9 @@
 				A44A6A001B6DAC54004290C6 /* LoginViewController.swift */,
 				A49369FA1B706886004CE026 /* TableViewController.swift */,
 				A452072A1B8044AD0089EEED /* LocationViewController.swift */,
+				A4A1B7491B901E5900C6934A /* DistanceTableViewController.swift */,
+				A4DD9D7D1B92A35B0086345A /* LocationCollectionViewController.swift */,
+				A4DD9D7F1B92A4AF0086345A /* LocationCollectionViewCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -320,6 +329,7 @@
 			files = (
 				A48684C31B27D70600585152 /* UdacityClient.swift in Sources */,
 				A407DF691B379F8F001674E3 /* StudentLocation.swift in Sources */,
+				A4DD9D801B92A4AF0086345A /* LocationCollectionViewCell.swift in Sources */,
 				A49369FB1B706886004CE026 /* TableViewController.swift in Sources */,
 				A48036E11B53485E0063DF45 /* UserData.swift in Sources */,
 				A45990091B85692D009C1A99 /* FaceBookLogin.swift in Sources */,
@@ -327,7 +337,9 @@
 				A407DF601B369189001674E3 /* ParseClient.swift in Sources */,
 				A40FB3C31B1FF89A002D477B /* FindOnMapViewController.swift in Sources */,
 				A40FB3C11B1FF89A002D477B /* AppDelegate.swift in Sources */,
+				A4DD9D7E1B92A35B0086345A /* LocationCollectionViewController.swift in Sources */,
 				A408CCD91B4A25660039F7E7 /* MapLocation.swift in Sources */,
+				A4A1B74A1B901E5900C6934A /* DistanceTableViewController.swift in Sources */,
 				A407DF661B369557001674E3 /* ParseConvenience.swift in Sources */,
 				A407DF641B3694F6001674E3 /* ParseConstants.swift in Sources */,
 				A48036E31B534C5A0063DF45 /* TestViewController.swift in Sources */,

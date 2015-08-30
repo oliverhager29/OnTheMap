@@ -1,5 +1,5 @@
 //
-//  TableViewController.swift
+//  DistanceTableViewController.swift
 //  OnTheMap
 //
 //  Created by OLIVER HAGER on 8/3/15.
@@ -8,9 +8,11 @@
 
 import Foundation
 import UIKit
+import MapKit
+import CoreLocation
 
-/// TableViewController - shows a table of student locations. Pressing on a row opens a web pages with the student's link. The list can be reloaded, a new location for the current logged in user can be posted and it can be logged out of the Udacity account.
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+/// DistanceTableViewController - shows a table of student locations within a given distance. Pressing on a row opens a web pages with the student's link. The list can be reloaded, a new location for the current logged in user can be posted and it can be logged out of the Udacity account.
+class DistanceTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     /// error alert when there is a problem retrieving all locations
     var alert: UIAlertController!
     
@@ -29,6 +31,15 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     /// user's last name
     var userLastName : String!
     
+    /// user's location latitude
+    var latitude : Double!
+    
+    /// user's location longitude
+    var longitude : Double!
+    
+    /// distance in miles
+    @IBOutlet weak var distanceTextField: UITextField!
+    
     /// activity indicator for loading the locations
     @IBOutlet weak var tableActivityIndicator: UIActivityIndicatorView!
     
@@ -37,10 +48,26 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     /// location table view
     @IBOutlet weak var locationsTableView: UITableView!
-
+    
+    /// location manager
+    let locationManager = CLLocationManager()
+    
     /// add second right button
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.requestWhenInUseAuthorization();
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            if(locationManager.location != nil) {
+                longitude = locationManager.location!.coordinate.longitude
+                latitude = locationManager.location!.coordinate.latitude
+            }
+        }
+        else{
+            println("Location service disabled");
+        }
         var postLocationButton = UIBarButtonItem(image: UIImage(named: "pin"), style: UIBarButtonItemStyle.Plain, target: self, action: "postLocation")
         myNavigationItem.rightBarButtonItems?.append(postLocationButton)
     }
@@ -80,6 +107,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
         performSegueWithIdentifier("postLocation", sender: controller)
     }
+    
     /// initalize alerts and table with locations
     /// :param: animated specifies whether view appears animated
     override func viewWillAppear(animated: Bool) {
@@ -118,23 +146,35 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     }
-    
+
     /// return number of locations (rows)
     /// :param: tableView table view
     /// :param: section section in table (there is only one)
     /// :returns: number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StudentLocationRepository.locations.count
+        if(self.latitude != nil && self.longitude != nil && self.distanceTextField.text.toInt() != nil) {
+            return StudentLocationRepository.getLocations(self.latitude!, fromLong: self.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!)).count
+        }
+        else {
+            return StudentLocationRepository.locations.count
+        }
     }
-
+    
     /// initializes table cell
     /// :param: tableView table view
     /// :param: indexPath row
     /// :returns: table view cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         /* Get cell type */
-        let cellReuseIdentifier = "LocationTableViewCell"
-        let location = StudentLocationRepository.locations[indexPath.row]
+        let cellReuseIdentifier = "LocationDistanceTableViewCell"
+        var locations : [StudentLocation]
+        if(self.latitude != nil && self.longitude != nil && self.distanceTextField.text.toInt() != nil) {
+            locations = StudentLocationRepository.getLocations(self.latitude!, fromLong: self.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!))
+        }
+        else {
+            locations = StudentLocationRepository.locations
+        }
+        let location = locations[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! UITableViewCell
         
         /* Set cell defaults */
@@ -202,4 +242,23 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.locationsTableView.reloadData()
     }
     
+    /// update location
+    /// :param: manager location manager
+    /// :param: locations locations
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        var locValue : CLLocationCoordinate2D = manager.location.coordinate;
+        let span2 = MKCoordinateSpanMake(1, 1)
+        let long = locValue.longitude;
+        let lat = locValue.latitude;
+        println(long);
+        println(lat);
+        let loadlocation = CLLocationCoordinate2D(
+            latitude: lat, longitude: long
+            
+        )
+        
+        self.latitude = lat
+        self.longitude = long
+        locationManager.stopUpdatingLocation();
+    }
 }
