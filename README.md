@@ -1,4 +1,4 @@
-# OnTheMap
+1# OnTheMap
 IOS App that lets Udacity students share their location and URL
 Login View
 1. Does the app have a login view that accepts email and password strings from users, with a “login” button?
@@ -33,7 +33,7 @@ The StudentInformation structs are stored as an array (or other suitable data st
 5. Does the app display an alert view if the download fails?
 The app displays an alert if the download fails. The app distinguishes between a failure on the server side and a lack of network connectivity in its alert
 
-*****6. Does the app display the downloaded data in a tabbed view with two tabs: a map and a table?
+6. Does the app display the downloaded data in a tabbed view with two tabs: a map and a table?
 The app displays downloaded data in a tabbed view with a map and a table. The app contains additional tabs with other representations of the data.
 
 7. Does the map view contain a pin for each of the locations that were downloaded?
