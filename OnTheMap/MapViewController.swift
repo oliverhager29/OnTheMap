@@ -224,6 +224,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
                     self.performSegueWithIdentifier("logout", sender: controller)
                     
                 })
+                FacebookClient.sharedInstance().logout()
             }
             else {
                 println("Logout failed: \(errorString)")

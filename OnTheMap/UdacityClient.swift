@@ -23,7 +23,9 @@ class UdacityClient : NSObject {
         super.init()
     }
     
-    // MARK: - GET
+    /// Send an HTTP GET request and handle then JSON response
+    /// :param: method REST operation
+    /// :param: parameters request parameters
     func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
@@ -56,7 +58,10 @@ class UdacityClient : NSObject {
         return task
     }
     
-    // MARK: - POST
+    /// Send an HTTP POST request and handle then JSON response
+    /// :param: method REST operation
+    /// :param: parameters request parameters
+    /// :param: jsonBody JSON body of request
     func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
@@ -94,7 +99,10 @@ class UdacityClient : NSObject {
         return task
     }
     
-    // MARK: - DELETE
+    /// Send an HTTP DELETE request and handle then JSON response
+    /// :param: method REST operation
+    /// :param: parameters request parameters
+    /// :param: jsonBody JSON body of request
     func taskForDELETEMethod(method: String, parameters: [String : AnyObject], headerParameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */

@@ -223,6 +223,7 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
                     self.performSegueWithIdentifier("logout", sender: controller)
                     
                 })
+                FacebookClient.sharedInstance().logout()
             }
             else {
                 println("Logout failed: \(errorString)")

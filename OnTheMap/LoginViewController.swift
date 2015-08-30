@@ -47,7 +47,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
-            UdacityClient.sharedInstance().createSessionWithFacebook(FBSDKAccessToken.currentAccessToken().tokenString!){ (success, errorString) in
+            FacebookClient.sharedInstance().createSessionWithFacebook(FBSDKAccessToken.currentAccessToken().tokenString!){ (success, errorString) in
                 if success {
                     println("Login successful")
                     dispatch_async(dispatch_get_main_queue(), {
@@ -107,7 +107,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             // should check if specific permissions missing
             if result.grantedPermissions.contains("email")
             {
-                UdacityClient.sharedInstance().createSessionWithFacebook(FBSDKAccessToken.currentAccessToken().tokenString!){ (success, errorString) in
+                FacebookClient.sharedInstance().createSessionWithFacebook(FBSDKAccessToken.currentAccessToken().tokenString!){ (success, errorString) in
                     if success {
                         println("Login successful")
                         dispatch_async(dispatch_get_main_queue(), {

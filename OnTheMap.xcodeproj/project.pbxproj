@@ -23,7 +23,7 @@
 		A40FB3E11B1FFD7E002D477B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A40FB3E01B1FFD7E002D477B /* CoreLocation.framework */; };
 		A44A6A011B6DAC54004290C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A6A001B6DAC54004290C6 /* LoginViewController.swift */; };
 		A452072B1B8044AD0089EEED /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A452072A1B8044AD0089EEED /* LocationViewController.swift */; };
-		A45990091B85692D009C1A99 /* FaceBookLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45990081B85692D009C1A99 /* FaceBookLogin.swift */; };
+		A45990091B85692D009C1A99 /* FacebookClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45990081B85692D009C1A99 /* FacebookClient.swift */; };
 		A459900B1B856BB6009C1A99 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A459900A1B856BB6009C1A99 /* FBSDKCoreKit.framework */; };
 		A459900E1B85703C009C1A99 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A459900D1B85703C009C1A99 /* FBSDKLoginKit.framework */; };
 		A48036E11B53485E0063DF45 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48036E01B53485E0063DF45 /* UserData.swift */; };
@@ -70,7 +70,7 @@
 		A40FB3E01B1FFD7E002D477B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A44A6A001B6DAC54004290C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A452072A1B8044AD0089EEED /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		A45990081B85692D009C1A99 /* FaceBookLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBookLogin.swift; sourceTree = "<group>"; };
+		A45990081B85692D009C1A99 /* FacebookClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookClient.swift; sourceTree = "<group>"; };
 		A459900A1B856BB6009C1A99 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		A459900D1B85703C009C1A99 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-20150813/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		A48036E01B53485E0063DF45 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 				A407DF611B3692A5001674E3 /* ParseConfig.swift */,
 				A407DF631B3694F6001674E3 /* ParseConstants.swift */,
 				A407DF651B369557001674E3 /* ParseConvenience.swift */,
-				A45990081B85692D009C1A99 /* FaceBookLogin.swift */,
+				A45990081B85692D009C1A99 /* FacebookClient.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -332,7 +332,7 @@
 				A4DD9D801B92A4AF0086345A /* LocationCollectionViewCell.swift in Sources */,
 				A49369FB1B706886004CE026 /* TableViewController.swift in Sources */,
 				A48036E11B53485E0063DF45 /* UserData.swift in Sources */,
-				A45990091B85692D009C1A99 /* FaceBookLogin.swift in Sources */,
+				A45990091B85692D009C1A99 /* FacebookClient.swift in Sources */,
 				A48684C71B27DB3C00585152 /* UdacityConstants.swift in Sources */,
 				A407DF601B369189001674E3 /* ParseClient.swift in Sources */,
 				A40FB3C31B1FF89A002D477B /* FindOnMapViewController.swift in Sources */,

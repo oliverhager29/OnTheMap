@@ -118,38 +118,4 @@ extension UdacityClient {
             }
         }
     }
-    
-    /*
-    POSTing (Creating) a Session with Facebook Authentication
-    
-    Method: https://www.udacity.com/api/session
-    Method Type: POST
-    Udacity Facebook App ID = 365362206864879
-    Required Parameters:
-    facebook_mobile - (Dictionary) a dictionary containing an access token from a valid Facebook session
-    access_token - (String) the user access token from Facebook
-    an access token is made available through the FBSDKAccessToken class
-    Note: the Facebook SDK was recently updated to version 4.0. According to the upgrade guide:
-    */
-    func createSessionWithFacebook(accessToken: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
-        //FBSession.activeSession has been replaced with [FBSDKAccessToken currentAccessToken] and FBSDKLoginManager. There is no concept of session state. Instead, use the manager to login and this sets the currentAccessToken reference.
-        //Example Request:
-        var body = [ParameterKeys.facebookMobile : [ParameterKeys.facebookAccessToken: accessToken]]
-        var params : [String : AnyObject] = [:]
-        taskForPOSTMethod(Methods.CreateSession, parameters: params, jsonBody: body) { JSONResult, error in
-            if let error = error {
-                completionHandler(success: false, errorString: "Facebook Login Failed.")
-            }
-            else if let statusMessage = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.StatusMessage) as? String {
-                completionHandler(success: false, errorString: statusMessage)
-            }
-            else {
-                if let sessionID = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.SessionID) as? String {
-                    completionHandler(success: true, errorString: nil)
-                } else {
-                    completionHandler(success: false, errorString: "Facebook Login Failed.")
-                }
-            }
-        }
-    }
 }

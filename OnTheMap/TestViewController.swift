@@ -89,7 +89,7 @@ class TestViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func facebookLogin(accessToken: String) -> Void {
         let outputTextView = self.outputTextView
-        UdacityClient.sharedInstance().createSessionWithFacebook(accessToken)  { (success, errorString) in
+        FacebookClient.sharedInstance().createSessionWithFacebook(accessToken)  { (success, errorString) in
             if success {
                 println("Login successful")
                 dispatch_async(dispatch_get_main_queue(), {

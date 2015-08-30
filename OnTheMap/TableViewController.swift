@@ -183,6 +183,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.performSegueWithIdentifier("logout", sender: controller)
                     
                 })
+                FacebookClient.sharedInstance().logout()
             }
             else {
                 println("Logout failed: \(errorString)")
