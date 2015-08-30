@@ -124,7 +124,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     /// :param: section section in table (there is only one)
     /// :returns: number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StudentLocationRepository.locations.count
+        return StudentLocationRepository.getLocationCount(tableActivityIndicator)
     }
 
     /// initializes table cell
@@ -134,17 +134,19 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         /* Get cell type */
         let cellReuseIdentifier = "LocationTableViewCell"
-        let location = StudentLocationRepository.locations[indexPath.row]
+        let location = StudentLocationRepository.getLocations(indexPath.row, activityIndicator: tableActivityIndicator)
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! UITableViewCell
         
         /* Set cell defaults */
         var firstNameStr = ""
-        if(location.firstName != nil) {
-            firstNameStr = location.firstName!
-        }
         var lastNameStr = ""
-        if(location.lastName != nil) {
-            lastNameStr = location.lastName!
+        if(location != nil) {
+            if(location.firstName != nil) {
+                firstNameStr = location.firstName!
+            }
+            if(location.lastName != nil) {
+                lastNameStr = location.lastName!
+            }
         }
         cell.textLabel!.text = "\(firstNameStr) \(lastNameStr)"
         cell.imageView!.image = UIImage(named: "pin")

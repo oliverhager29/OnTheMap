@@ -17,7 +17,7 @@ The JSON parsing code related to student data is located  in a dedicated API cli
 The user sees an alert if the post fails.
 
 Student Locations Tabbed View
-*****1. Does the app download locations and links previously posted by students?
+1. Does the app download locations and links previously posted by students?
 (to be displayed in the Map and Table tabs)
 The app downloads more than the most recent 100 locations posted by students in a network-conscious manner, e.g., by using the Parse API's limits/skip parameters.
 
@@ -57,7 +57,7 @@ Tapping a row in the table opens the default device browser to the student's lin
 13. Does the Student Locations Tabbed View have a pin button in the upper right corner of the navigation bar? Does that button allow users to post their own information to the server?
 The Student Locations Tabbed View has a pin button in the upper right corner of the navigation bar. The button modally presents the Information Posting View so that users can post their own information to the server.
 
-*****14. Does the Student Locations Tabbed View have a logout button in the upper left corner of the navigation bar? Does that button allow the users to correctly logout?
+14. Does the Student Locations Tabbed View have a logout button in the upper left corner of the navigation bar? Does that button allow the users to correctly logout?
 The Student Locations Tabbed View has a logout button in the upper left corner of the navigation bar. The logout button causes the Student Locations Tabbed View to dismiss, and logs out of the current session. If applicable, the logout button logs out of the current Facebook session.
 
 Information Posting View

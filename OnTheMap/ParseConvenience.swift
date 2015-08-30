@@ -196,4 +196,43 @@ extension ParseClient {
             }
             task.resume()
     }
+    
+    
+    /// get number of student locations
+    /// :param: completionHandler handles error/result
+    func getNumberOfStudentLocations(completionHandler: (result: Int, errorString: String?) -> Void) {
+        let request = NSMutableURLRequest(URL: NSURL(string: ParseClient.Constants.BaseURL+"?\(ParseClient.ParameterKeys.Limit)=0&\(ParseClient.ParameterKeys.Count)=1")!)
+        request.addValue(ParseClient.Constants.ApplicationId, forHTTPHeaderField: ParseClient.ParameterKeys.ApplicationId)
+        request.addValue(ParseClient.Constants.ApiKey, forHTTPHeaderField: ParseClient.ParameterKeys.ApiKey)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            if error != nil { // Handle error...
+                completionHandler(result: 0, errorString: "Getting Number of Student Locations failed with network error \(error.description)")
+            }
+            else {
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+                var parsingError: NSError? = nil
+                
+                let parsedResult: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parsingError)
+                
+                if let error = parsingError {
+                    completionHandler(result: 0, errorString: "Getting Number of Student Locations failed with parsing error \(error.description)")
+                }
+                else if let statusMessage = parsedResult?.valueForKey(ParseClient.JSONResponseKeys.StatusMessage) as? String {
+                    completionHandler(result: 0, errorString: "Getting Number of Student Locations failed with error \(statusMessage)")
+                }
+                else {
+                    if let count = parsedResult?.valueForKey(ParseClient.JSONResponseKeys.Count) as? Int {
+                        completionHandler(result: count, errorString: nil)
+                    }
+                    else {
+                       completionHandler(result: 0, errorString: "Getting Number of Student Locations failed")
+                    }
+                }
+                return
+            }
+        }
+        task.resume()
+    }
+    
 }

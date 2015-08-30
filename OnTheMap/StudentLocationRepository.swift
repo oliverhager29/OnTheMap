@@ -41,4 +41,61 @@ class StudentLocationRepository {
         let d = R * c
         return d
     }
+    
+    static func getLocations(index: Int, activityIndicator: UIActivityIndicatorView) -> StudentLocation! {
+        if(index<locations.count) {
+            return locations[index]
+        }
+        else {
+            var errorOccurred : Bool = false
+            ParseClient.sharedInstance().getStudentLocations(locations.count, limit: index-(locations.count-1)+100) { locations, error in
+                if let locations = locations {
+                    StudentLocationRepository.locations += locations
+                    dispatch_async(dispatch_get_main_queue()) {
+                        activityIndicator.stopAnimating()
+                    }
+                } else {
+                    errorOccurred = true
+                    println(error)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        activityIndicator.stopAnimating()
+                    })
+                }
+            }
+            while(index >= locations.count && !errorOccurred) {
+              // wait
+            }
+            if(index<locations.count) {
+                return locations[index]
+            }
+            else {
+                return nil
+            }
+        }
+    }
+    
+    static func getLocationCount(activityIndicator: UIActivityIndicatorView) -> Int {
+        var errorOccurred : Bool = false
+        var numberOfLocations : Int = -1
+        ParseClient.sharedInstance().getNumberOfStudentLocations() { count, error in
+            if error == nil {
+                errorOccurred = false
+                numberOfLocations = count
+                dispatch_async(dispatch_get_main_queue()) {
+                    activityIndicator.stopAnimating()
+                }
+            } else {
+                errorOccurred = true
+                numberOfLocations = count
+                println(error)
+                dispatch_async(dispatch_get_main_queue(), {
+                    activityIndicator.stopAnimating()
+                })
+            }
+        }
+        while(numberOfLocations < 0 && !errorOccurred) {
+            // wait
+        }
+        return numberOfLocations
+    }
 }

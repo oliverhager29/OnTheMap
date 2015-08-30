@@ -30,6 +30,7 @@ extension ParseClient {
         static let Skip = "skip"
         static let Limit = "limit"
         static let Order = "order"
+        static let Count = "count"
     }
     
     // MARK: - JSON Response Keys
@@ -43,6 +44,7 @@ extension ParseClient {
         static let MediaURL = "mediaURL"
         static let Latitude = "latitude"
         static let Longitude = "longitude"
+        static let Count = "count"
         
         // MARK: General
         static let StatusMessage = "error"
