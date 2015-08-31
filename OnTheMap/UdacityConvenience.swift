@@ -30,9 +30,9 @@ extension UdacityClient {
                 completionHandler(success: false, errorString: statusMessage)
             }
             else {
-                if let session = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Session) {
+                if let session: AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Session) {
                     if let sessionID = session.valueForKey(UdacityClient.JSONResponseKeys.Id) as? String {
-                        if let account = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Account) {
+                        if let account: AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Account) {
                             if let userID = account.valueForKey(UdacityClient.JSONResponseKeys.Key) as? String {
                                     self.userID = userID
                                     completionHandler(success: true, errorString: nil)
@@ -70,7 +70,7 @@ extension UdacityClient {
                 completionHandler(success: false, errorString: statusMessage)
             }
             else {
-                if let sessionID = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Session) {
+                if let sessionID: AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Session) {
                     completionHandler(success: true, errorString: nil)
                 } else {
                     completionHandler(success: false, errorString: "Logout Failed.")
@@ -91,7 +91,7 @@ extension UdacityClient {
                 completionHandler(result: nil, errorString: statusMessage)
             }
             else {
-                if let user = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.User) {
+                if let user: AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.User) {
                     var userData = UserData()
                     if let username = user.valueForKey(UdacityClient.JSONResponseKeys.User) as? String {
                         userData.username = username
@@ -108,7 +108,7 @@ extension UdacityClient {
                     if let linkedInURL = user.valueForKey(UdacityClient.JSONResponseKeys.LinkedInURL) as? String {
                         userData.linkedInURL = linkedInURL
                     }
-                    if let email = user.valueForKey(UdacityClient.JSONResponseKeys.Email) {
+                    if let email: AnyObject = user.valueForKey(UdacityClient.JSONResponseKeys.Email) {
                         if let address = email.valueForKey(UdacityClient.JSONResponseKeys.Address) as? String {
                         userData.email = address
                         }
