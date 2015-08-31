@@ -12,7 +12,7 @@ import CoreLocation
 import MapKit
 
 /// LocationViewController - this page allows the current logged in user to lookup its location and navigate to the posting location page. The user may decide to cancel the posting and return to the previous page (map or table of locations)
-class LocationViewController: UIViewController {
+class LocationViewController: UIViewController, UITextFieldDelegate {
     
     /// error alert when retrieving the public data of the currently logged in user
     var getPublicUserDataAlert: UIAlertController!
@@ -55,6 +55,7 @@ class LocationViewController: UIViewController {
         getPublicUserDataAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
         geoCodingAlert = UIAlertController(title: "Error", message: "Getting public user data failed", preferredStyle: UIAlertControllerStyle.Alert)
         geoCodingAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+        self.locationTextField!.delegate = self
     }
     
     /// find location for location string and navigate to posting location page
@@ -124,5 +125,14 @@ class LocationViewController: UIViewController {
         self.label3.alpha = 1.0
         self.locationTextField.alpha = 1.0
         self.findOnTheMapButton.alpha = 1.0
+    }
+    
+    /// hides text field after return
+    /// textField text field
+    /// :returns: true
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true;
     }
 }

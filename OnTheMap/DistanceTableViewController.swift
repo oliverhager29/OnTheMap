@@ -12,7 +12,7 @@ import MapKit
 import CoreLocation
 
 /// DistanceTableViewController - shows a table of student locations within a given distance. Pressing on a row opens a web pages with the student's link. The list can be reloaded, a new location for the current logged in user can be posted and it can be logged out of the Udacity account.
-class DistanceTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
+class DistanceTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UITextFieldDelegate {
     /// error alert when there is a problem retrieving all locations
     var alert: UIAlertController!
     
@@ -145,6 +145,7 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
                 })
             }
         }
+        self.distanceTextField.delegate = self
     }
 
     /// return number of locations (rows)
@@ -261,5 +262,15 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
         self.latitude = lat
         self.longitude = long
         locationManager.stopUpdatingLocation();
+    }
+    
+    /// hides text field after return
+    /// :param: textField text field
+    /// :returns: true
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        self.locationsTableView.reloadData()
+        return true;
     }
 }

@@ -193,4 +193,13 @@ class LocationCollectionViewController: UIViewController, UICollectionViewDataSo
         //self.locationCollectionView.reloadData()
     }
 
+    /// cell was selected and web browser window is opened with the media URL of the selected location
+    /// :param: collectionView collection view
+    /// :param: indexPath index path (row) of selected cell
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let location = StudentLocationRepository.locations[indexPath.row]
+        if let url = location.mediaURL {
+            UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+        }
+    }
 }

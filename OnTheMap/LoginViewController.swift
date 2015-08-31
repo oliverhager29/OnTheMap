@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 /// LoginViewController - login page
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     /// failed login alert
     var failedLoginAlert: UIAlertController!
     
@@ -60,6 +60,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.displayError(tmpErrorString)
                     })
+                    FacebookClient.sharedInstance().logout()
                 }
             }
         }
@@ -77,13 +78,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     /// initialize failed login alert with a "finger" animation
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         failedLoginAlert = UIAlertController(title: "Error", message: "Invalid Email or Password", preferredStyle: UIAlertControllerStyle.Alert)
         failedLoginAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
         var imageView = UIImageView(frame: CGRectMake(220, 10, 40, 40))
         imageView.image = UIImage.animatedImageNamed("shake", duration: 1)
         imageView.startAnimating()
         self.failedLoginAlert.view.addSubview(imageView)
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
     
     /// Facebook login
@@ -191,5 +194,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 })
             }
         })
+    }
+
+    /// hides text field after return
+    /// textField text field
+    /// :returns: true
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true;
     }
 }

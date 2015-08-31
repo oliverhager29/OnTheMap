@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 
 /// FindOnMapViewController - allows user to post location onto the map
-class FindOnMapViewController: UIViewController, MKMapViewDelegate {
+class FindOnMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     /// location
     var location : StudentLocation!
 
@@ -38,6 +38,7 @@ class FindOnMapViewController: UIViewController, MKMapViewDelegate {
         self.mapView!.delegate = self
         alert = UIAlertController(title: "Error", message: "Posting location failed", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+        self.linkTextField!.delegate = self
     }
     
 
@@ -65,16 +66,32 @@ class FindOnMapViewController: UIViewController, MKMapViewDelegate {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.mapActivityIndicator.stopAnimating()
                     println("Successful location creation with objectId \(result)")
+                    self.mapActivityIndicator.stopAnimating()
+                    self.alert.message = "Posting location succeeded"
+                    self.alert.title = "Success"
+                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+                    self.performSegueWithIdentifier("cancel", sender: controller)
                 })
             } else {
-                println("Create location failed: \(errorString)")
+                println("Posting location failed: \(errorString)")
                 dispatch_async(dispatch_get_main_queue(), {
                     println("Failed location creation")
                     self.mapActivityIndicator.stopAnimating()
+                    self.alert.message = "Posting location failed: \(errorString!)"
+                    self.alert.title = "Error"
                     self.presentViewController(self.alert, animated: true, completion: nil)
                 })
             }
         }
+    }
+    
+    /// hides text field after return
+    /// textField text field
+    /// :returns: true
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true;
     }
 }
 
