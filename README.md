@@ -1,5 +1,11 @@
-1# OnTheMap
+OnTheMap
 IOS App that lets Udacity students share their location and URL
+
+*** Tested with ***
+iPhone 6plus
+iPad 2
+Simulator
+
 *** Login View ***
 
 1. Does the app have a login view that accepts email and password strings from users, with a “login” button?
