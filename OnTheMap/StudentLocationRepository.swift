@@ -10,7 +10,7 @@ import Foundation
 /// class acts as repository for student locations
 class StudentLocationRepository {
     static var pageIndex = 0
-    static let pageSize = 100
+    static let pageSize = 10
     static var locations : [StudentLocation] = []
     
     /// get student locations with in a distance
@@ -48,7 +48,7 @@ class StudentLocationRepository {
         }
         else {
             var errorOccurred : Bool = false
-            ParseClient.sharedInstance().getStudentLocations(locations.count, limit: index-(locations.count-1)+100) { locations, error in
+            ParseClient.sharedInstance().getStudentLocations(locations.count, limit: index-(locations.count-1)+pageSize) { locations, error in
                 if let locations = locations {
                     StudentLocationRepository.locations += locations
                     dispatch_async(dispatch_get_main_queue()) {
@@ -97,5 +97,10 @@ class StudentLocationRepository {
             // wait
         }
         return numberOfLocations
+    }
+    
+    static func reset() {
+        StudentLocationRepository.locations = []
+        StudentLocationRepository.pageIndex = 0
     }
 }

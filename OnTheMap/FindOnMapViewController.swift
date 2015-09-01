@@ -18,6 +18,12 @@ class FindOnMapViewController: UIViewController, MKMapViewDelegate, UITextFieldD
     /// alert window
     var alert: UIAlertController!
     
+    /// posted coordinates
+    var coordinates: CLLocationCoordinate2D!
+    
+    /// annotation for the location pin
+    var pointAnnotation: MKPointAnnotation!
+    
     /// activity indicator while posting location
     @IBOutlet weak var mapActivityIndicator: UIActivityIndicatorView!
     
@@ -39,6 +45,9 @@ class FindOnMapViewController: UIViewController, MKMapViewDelegate, UITextFieldD
         alert = UIAlertController(title: "Error", message: "Posting location failed", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
         self.linkTextField!.delegate = self
+        self.mapView!.addAnnotation(pointAnnotation)
+        self.mapView!.centerCoordinate = coordinates
+        self.mapView!.selectAnnotation(pointAnnotation, animated: true)
     }
     
 
@@ -58,29 +67,36 @@ class FindOnMapViewController: UIViewController, MKMapViewDelegate, UITextFieldD
     /// :param: sender submit button
     @IBAction func submitButtonPressed(sender: UIButton) {
         self.mapActivityIndicator.startAnimating()
-        self.location.mediaURL=self.linkTextField.text
-        var createJSON =  "{ \"uniqueKey\" : \"\(location.uniqueKey!)\", \"firstName\" : \"\(location.firstName!)\", \"lastName\" : \"\(location.lastName!)\", \"mapString\" : \"\(location.mapString!)\", \"mediaURL\" : \"\(location.mediaURL!)\", \"latitude\": \(location.latitude!), \"longitude\": \(location.longitude!) }"
-        ParseClient.sharedInstance().createStudentLocation(createJSON)  { (result, errorString) in
-            if result != nil {
-                println("Create location successful")
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.mapActivityIndicator.stopAnimating()
-                    println("Successful location creation with objectId \(result)")
-                    self.mapActivityIndicator.stopAnimating()
-                    self.alert.message = "Posting location succeeded"
-                    self.alert.title = "Success"
-                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-                    self.performSegueWithIdentifier("cancel", sender: controller)
-                })
-            } else {
-                println("Posting location failed: \(errorString)")
-                dispatch_async(dispatch_get_main_queue(), {
-                    println("Failed location creation")
-                    self.mapActivityIndicator.stopAnimating()
-                    self.alert.message = "Posting location failed: \(errorString!)"
-                    self.alert.title = "Error"
-                    self.presentViewController(self.alert, animated: true, completion: nil)
-                })
+        if(self.location==nil) {
+            self.alert.message = "Posting location failed: network error"
+            self.alert.title = "Error"
+            self.presentViewController(self.alert, animated: true, completion: nil)
+        }
+        else {
+            self.location.mediaURL=self.linkTextField.text
+            var createJSON =  "{ \"uniqueKey\" : \"\(location.uniqueKey!)\", \"firstName\" : \"\(location.firstName!)\", \"lastName\" : \"\(location.lastName!)\", \"mapString\" : \"\(location.mapString!)\", \"mediaURL\" : \"\(location.mediaURL!)\", \"latitude\": \(location.latitude!), \"longitude\": \(location.longitude!) }"
+            ParseClient.sharedInstance().createStudentLocation(createJSON)  { (result, errorString) in
+                if result != nil {
+                    println("Create location successful")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.mapActivityIndicator.stopAnimating()
+                        println("Successful location creation with objectId \(result)")
+                        self.mapActivityIndicator.stopAnimating()
+                        self.alert.message = "Posting location succeeded"
+                        self.alert.title = "Success"
+                        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+                        self.performSegueWithIdentifier("cancel", sender: controller)
+                    })
+                } else {
+                    println("Posting location failed: \(errorString)")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        println("Failed location creation")
+                        self.mapActivityIndicator.stopAnimating()
+                        self.alert.message = "Posting location failed: \(errorString!)"
+                        self.alert.title = "Error"
+                        self.presentViewController(self.alert, animated: true, completion: nil)
+                    })
+                }
             }
         }
     }

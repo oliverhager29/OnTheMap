@@ -26,7 +26,7 @@ extension UdacityClient {
             if let error = error {
                 completionHandler(success: false, errorString: "Login Failed because of a network problem.")
             }
-            if let statusMessage = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.StatusMessage) as? String {
+            else if let statusMessage = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.StatusMessage) as? String {
                 completionHandler(success: false, errorString: statusMessage)
             }
             else {
@@ -66,7 +66,7 @@ extension UdacityClient {
             if let error = error {
                 completionHandler(success: false, errorString: "Logout failed.")
             }
-            if let statusMessage = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.StatusMessage) as? String {
+            else if let statusMessage = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.StatusMessage) as? String {
                 completionHandler(success: false, errorString: statusMessage)
             }
             else {
@@ -87,7 +87,7 @@ extension UdacityClient {
             if let error = error {
                 completionHandler(result: nil, errorString: "Get User Data Failed.")
             }
-            if let statusMessage = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.StatusMessage) as? String {
+            else if let statusMessage = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.StatusMessage) as? String {
                 completionHandler(result: nil, errorString: statusMessage)
             }
             else {

@@ -43,13 +43,14 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         var postLocationButton = UIBarButtonItem(image: UIImage(named: "pin"), style: UIBarButtonItemStyle.Plain, target: self, action: "postLocation")
         myNavigationItem.rightBarButtonItems?.append(postLocationButton)
+        StudentLocationRepository.reset()
     }
     
     /// check whether the location for the current logged in user already has been posted and show a warning alert if so
     func checkPostLocation() {
         self.tableActivityIndicator.startAnimating()
         if self.userFirstName != nil && self.userLastName != nil {
-            ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 100, criteriaJSON: "{ \"firstName\" : \"\(self.userFirstName!)\", \"lastName\" : \"\(self.userLastName!)\" }") { locations, error in
+            ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 1, criteriaJSON: "{ \"firstName\" : \"\(self.userFirstName!)\", \"lastName\" : \"\(self.userLastName!)\" }") { locations, error in
                 if let locations = locations {
                     if locations.count > 0 {
                         dispatch_async(dispatch_get_main_queue()) {

@@ -47,7 +47,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
     func checkPostLocation() {
         self.mapActivityIndicator.startAnimating()
         if self.userFirstName != nil && self.userLastName != nil {
-            ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 100, criteriaJSON: "{ \"firstName\" : \"\(self.userFirstName!)\", \"lastName\" : \"\(self.userLastName!)\" }") { locations, error in
+            ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 1, criteriaJSON: "{ \"firstName\" : \"\(self.userFirstName!)\", \"lastName\" : \"\(self.userLastName!)\" }") { locations, error in
                 if let locations = locations {
                     if locations.count > 0 {
                         dispatch_async(dispatch_get_main_queue()) {

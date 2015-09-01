@@ -157,7 +157,7 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
             return StudentLocationRepository.getLocations(self.latitude!, fromLong: self.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!)).count
         }
         else {
-            return StudentLocationRepository.locations.count
+            return StudentLocationRepository.getLocationCount(tableActivityIndicator)
         }
     }
     
@@ -168,14 +168,14 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         /* Get cell type */
         let cellReuseIdentifier = "LocationDistanceTableViewCell"
-        var locations : [StudentLocation]
+        var location: StudentLocation
         if(self.latitude != nil && self.longitude != nil && self.distanceTextField.text.toInt() != nil) {
-            locations = StudentLocationRepository.getLocations(self.latitude!, fromLong: self.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!))
+            let locations = StudentLocationRepository.getLocations(self.latitude!, fromLong: self.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!))
+            location = locations[indexPath.row]
         }
         else {
-            locations = StudentLocationRepository.locations
+            location = StudentLocationRepository.getLocations(indexPath.row, activityIndicator: tableActivityIndicator)
         }
-        let location = locations[indexPath.row]
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! UITableViewCell
         
         /* Set cell defaults */

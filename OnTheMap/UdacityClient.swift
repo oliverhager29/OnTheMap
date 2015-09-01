@@ -40,15 +40,21 @@ class UdacityClient : NSObject {
         println(urlString)
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            print("HTTP \(request.HTTPMethod) response:")
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-            if let error = downloadError {
-                let newError = UdacityClient.errorForData(newData, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
-            } else {
-                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            if(data ==  nil || data.length<5) {
+                let userInfo = [NSLocalizedDescriptionKey : "No connectivity"]
+                completionHandler(result: nil, error: NSError(domain: "Udacity Error", code: 1, userInfo: userInfo))
+            }
+            else {
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                print("HTTP \(request.HTTPMethod) response:")
+                println(NSString(data: data, encoding: NSUTF8StringEncoding))
+                if let error = downloadError {
+                    let newError = UdacityClient.errorForData(newData, response: response, error: error)
+                    completionHandler(result: nil, error: downloadError)
+                } else {
+                    UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                }
             }
         }
         
@@ -81,15 +87,21 @@ class UdacityClient : NSObject {
         println(NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding))
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            print("HTTP \(request.HTTPMethod) response:")
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-            if let error = downloadError {
-                let newError = UdacityClient.errorForData(newData, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
-            } else {
-                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            if(data ==  nil || data.length<5) {
+                let userInfo = [NSLocalizedDescriptionKey : "No connectivity"]
+                completionHandler(result: nil, error: NSError(domain: "Udacity Error", code: 1, userInfo: userInfo))
+            }
+            else {
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset  response data! */
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                print("HTTP \(request.HTTPMethod) response:")
+                println(NSString(data: data!, encoding: NSUTF8StringEncoding))
+                if let error = downloadError {
+                    let newError = UdacityClient.errorForData(newData, response: response, error: error)
+                    completionHandler(result: nil, error: downloadError)
+                } else {
+                    UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                }
             }
         }
         
@@ -121,15 +133,21 @@ class UdacityClient : NSObject {
         //println(NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding))
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            print("HTTP \(request.HTTPMethod) response:")
-            println(NSString(data: newData, encoding: NSUTF8StringEncoding))
-            if let error = downloadError {
-                let newError = UdacityClient.errorForData(newData, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
-            } else {
-                UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            if(data ==  nil || data.length<5) {
+                let userInfo = [NSLocalizedDescriptionKey : "No connectivity"]
+                completionHandler(result: nil, error: NSError(domain: "Udacity Error", code: 1, userInfo: userInfo))
+            }
+            else {
+                let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                print("HTTP \(request.HTTPMethod) response:")
+                println(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                if let error = downloadError {
+                    let newError = UdacityClient.errorForData(newData, response: response, error: error)
+                    completionHandler(result: nil, error: downloadError)
+                } else {
+                    UdacityClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                }
             }
         }
         

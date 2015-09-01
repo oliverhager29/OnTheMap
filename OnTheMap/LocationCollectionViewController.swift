@@ -135,7 +135,7 @@ class LocationCollectionViewController: UIViewController, UICollectionViewDataSo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         /* Get cell type */
         let cellReuseIdentifier = "LocationCollectionViewCell"
-        let location = StudentLocationRepository.locations[indexPath.row]
+        let location = StudentLocationRepository.getLocations(indexPath.row, activityIndicator: collectionActivityIndicator)
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! LocationCollectionViewCell
         
         /* Set cell defaults */

@@ -40,8 +40,16 @@ class FacebookClient {
                 completionHandler(success: false, errorString: statusMessage)
             }
             else {
-                if let sessionID = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.SessionID) as? String {
-                    completionHandler(success: true, errorString: nil)
+                if let session: AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Session) {
+                    if let sessionId=session.valueForKey(UdacityClient.JSONResponseKeys.Id) as? String {
+                        UdacityClient.sharedInstance().sessionID = sessionId
+                        if let account: AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.Account) {
+                                if let userId=account.valueForKey(UdacityClient.JSONResponseKeys.Key) as? String {
+                                UdacityClient.sharedInstance().userID = userId
+                                completionHandler(success: true, errorString: nil)
+                            }
+                        }
+                    }
                 } else {
                     completionHandler(success: false, errorString: "Facebook Login Failed.")
                 }

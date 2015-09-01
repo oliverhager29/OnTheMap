@@ -67,6 +67,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
         else
         {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            //loginView.loginBehavior = FBSDKLoginBehavior.SystemAccount
             let loginViewWidth = loginView.frame.width
             let loginViewHeight = loginView.frame.height
             loginView.center.x = self.view.center.x

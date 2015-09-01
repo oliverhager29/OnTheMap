@@ -42,13 +42,18 @@ class ParseClient : NSObject {
         
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
-            
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            if let error = downloadError {
-                let newError = ParseClient.errorForData(data, response: response, error: error)
+            if(data ==  nil || data.length<5) {
+                let userInfo = [NSLocalizedDescriptionKey : "No connectivity"]
+                completionHandler(result: nil, error: NSError(domain: "Parse Error", code: 1, userInfo: userInfo))
+            }
+            else {
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                if let error = downloadError {
+                    let newError = ParseClient.errorForData(data, response: response, error: error)
                 completionHandler(result: nil, error: downloadError)
-            } else {
-                ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                } else {
+                    ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                }
             }
         }
         
@@ -80,13 +85,18 @@ class ParseClient : NSObject {
         
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
-            
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            if let error = downloadError {
-                let newError = ParseClient.errorForData(data, response: response, error: error)
+            if(data ==  nil || data.length<5) {
+                let userInfo = [NSLocalizedDescriptionKey : "No connectivity"]
+                completionHandler(result: nil, error: NSError(domain: "Parse Error", code: 1, userInfo: userInfo))
+            }
+            else {
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                if let error = downloadError {
+                    let newError = ParseClient.errorForData(data, response: response, error: error)
                 completionHandler(result: nil, error: downloadError)
-            } else {
-                ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                } else {
+                    ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                }
             }
         }
         
@@ -118,13 +128,18 @@ class ParseClient : NSObject {
         
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) {data, response, downloadError in
-            
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
-            if let error = downloadError {
-                let newError = ParseClient.errorForData(data, response: response, error: error)
-                completionHandler(result: nil, error: downloadError)
-            } else {
-                ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+            if(data ==  nil || data.length<5) {
+                let userInfo = [NSLocalizedDescriptionKey : "No connectivity"]
+                completionHandler(result: nil, error: NSError(domain: "Parse Error", code: 1, userInfo: userInfo))
+            }
+            else {
+                /* 5/6. Parse the data and use the data (happens in completion handler) */
+                if let error = downloadError {
+                    let newError = ParseClient.errorForData(data, response: response, error: error)
+                    completionHandler(result: nil, error: downloadError)
+                } else {
+                    ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                }
             }
         }
         

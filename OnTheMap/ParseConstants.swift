@@ -31,6 +31,8 @@ extension ParseClient {
         static let Limit = "limit"
         static let Order = "order"
         static let Count = "count"
+        static let CreatedAt = "createdAt"
+        static let UpdatedAt = "updatedAt"
     }
     
     // MARK: - JSON Response Keys
@@ -45,6 +47,8 @@ extension ParseClient {
         static let Latitude = "latitude"
         static let Longitude = "longitude"
         static let Count = "count"
+        static let CreatedAt = "createdAt"
+        static let UpdatedAt = "updatedAt"
         
         // MARK: General
         static let StatusMessage = "error"

@@ -18,13 +18,13 @@ extension ParseClient {
     /// :param: limit page size
     /// :param: completionHandler handles error/result
     func getStudentLocations(skip: Int, limit: Int, completionHandler: (result: [StudentLocation]?, errorString: String?) -> Void) {
-        let request = NSMutableURLRequest(URL: NSURL(string: ParseClient.Constants.BaseURL+"?\(ParseClient.ParameterKeys.Limit)=\(limit)&\(ParseClient.ParameterKeys.Skip)=\(skip)&\(ParseClient.ParameterKeys.Order)=\(ParseClient.JSONResponseKeys.FirstName),\(ParseClient.JSONResponseKeys.LastName)")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: ParseClient.Constants.BaseURL+"?\(ParseClient.ParameterKeys.Limit)=\(limit)&\(ParseClient.ParameterKeys.Skip)=\(skip)&\(ParseClient.ParameterKeys.Order)=-\(ParseClient.JSONResponseKeys.UpdatedAt)")!)
         request.addValue(ParseClient.Constants.ApplicationId, forHTTPHeaderField: ParseClient.ParameterKeys.ApplicationId)
         request.addValue(ParseClient.Constants.ApiKey, forHTTPHeaderField: ParseClient.ParameterKeys.ApiKey)
         
         request.addValue(skip.description, forHTTPHeaderField: ParseClient.ParameterKeys.Skip)
         request.addValue(limit.description, forHTTPHeaderField: ParseClient.ParameterKeys.Limit)
-        request.addValue("\(ParseClient.ParameterKeys.Order)=\(ParseClient.JSONResponseKeys.FirstName),\(ParseClient.JSONResponseKeys.LastName)", forHTTPHeaderField: ParseClient.ParameterKeys.Order)
+        request.addValue("\(ParseClient.ParameterKeys.Order)=-\(ParseClient.JSONResponseKeys.UpdatedAt)", forHTTPHeaderField: ParseClient.ParameterKeys.Order)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil { // Handle error...
@@ -74,12 +74,12 @@ extension ParseClient {
     func getStudentLocationsByCriteria(skip: Int, limit: Int, criteriaJSON: String, completionHandler: (result: [StudentLocation]?, errorString: String?) -> Void) {
         var tmpStr : String? = criteriaJSON.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         if let criteriaJSONEscaped = tmpStr {
-            let request = NSMutableURLRequest(URL: NSURL(string: ParseClient.Constants.BaseURL+ParseClient.Constants.BaseURL+"?\(ParseClient.ParameterKeys.Limit)=\(limit)&\(ParseClient.ParameterKeys.Skip)=\(skip)&\(ParseClient.ParameterKeys.Order)=\(ParseClient.JSONResponseKeys.FirstName),\(ParseClient.JSONResponseKeys.LastName)&where="+criteriaJSONEscaped)!)
+            let request = NSMutableURLRequest(URL: NSURL(string: ParseClient.Constants.BaseURL+ParseClient.Constants.BaseURL+"?\(ParseClient.ParameterKeys.Limit)=\(limit)&\(ParseClient.ParameterKeys.Skip)=\(skip)&\(ParseClient.ParameterKeys.Order)=-\(ParseClient.JSONResponseKeys.UpdatedAt)&where="+criteriaJSONEscaped)!)
             request.addValue(ParseClient.Constants.ApplicationId, forHTTPHeaderField: ParseClient.ParameterKeys.ApplicationId)
             request.addValue(ParseClient.Constants.ApiKey, forHTTPHeaderField: ParseClient.ParameterKeys.ApiKey)
             request.addValue(skip.description, forHTTPHeaderField: ParseClient.ParameterKeys.Skip)
             request.addValue(limit.description, forHTTPHeaderField: ParseClient.ParameterKeys.Limit)
-            request.addValue("order=\(ParseClient.JSONResponseKeys.FirstName),l\(ParseClient.JSONResponseKeys.LastName)", forHTTPHeaderField: ParseClient.ParameterKeys.Order)
+            request.addValue("order=-\(ParseClient.JSONResponseKeys.UpdatedAt)", forHTTPHeaderField: ParseClient.ParameterKeys.Order)
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request) { data, response, error in
                 if error != nil { // Handle error...
