@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Constants used by Parse API
 extension ParseClient {
     // MARK: - Constants
     struct Constants {

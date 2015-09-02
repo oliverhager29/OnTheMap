@@ -23,12 +23,6 @@ class LocationCollectionViewController: UIViewController, UICollectionViewDataSo
     /// error alert when having a problem getting the locations of the other students
     var getStudentLocationsAlert: UIAlertController!
     
-    /// user's first name
-    var userFirstName : String!
-    
-    /// user's last name
-    var userLastName : String!
-    
     /// activity indicator for loading the locations
     @IBOutlet weak var collectionActivityIndicator: UIActivityIndicatorView!
     
@@ -49,8 +43,10 @@ class LocationCollectionViewController: UIViewController, UICollectionViewDataSo
     /// check whether the location for the current logged in user already has been posted and show a warning alert if so
     func checkPostLocation() {
         self.collectionActivityIndicator.startAnimating()
-        if self.userFirstName != nil && self.userLastName != nil {
-            ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 100, criteriaJSON: "{ \"firstName\" : \"\(self.userFirstName!)\", \"lastName\" : \"\(self.userLastName!)\" }") { locations, error in
+        if let userData = UdacityClient.sharedInstance().userData {
+            let firstName = userData.firstName
+            let lastName = userData.lastName
+            ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 100, criteriaJSON: "{ \"firstName\" : \"\(firstName)\", \"lastName\" : \"\(lastName)\" }") { locations, error in
                 if let locations = locations {
                     if locations.count > 0 {
                         dispatch_async(dispatch_get_main_queue()) {
@@ -92,10 +88,10 @@ class LocationCollectionViewController: UIViewController, UICollectionViewDataSo
         self.collectionActivityIndicator.startAnimating()
         UdacityClient.sharedInstance().getPublicUserData()  { (result, errorString) in
             if let result = result as UserData! {
-                self.userFirstName = result.firstName
-                self.userLastName = result.lastName
+                let firstName = result.firstName
+                let lastName = result.lastName
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.overwriteAlert = UIAlertController(title: "Error", message: "User \(self.userFirstName) \(self.userLastName) Has Already Posted a Student Location. Would You Like to Overwrite Their Location?", preferredStyle: UIAlertControllerStyle.Alert)
+                    self.overwriteAlert = UIAlertController(title: "Error", message: "User \(firstName) \(lastName) Has Already Posted a Student Location. Would You Like to Overwrite Their Location?", preferredStyle: UIAlertControllerStyle.Alert)
                     self.overwriteAlert.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.Default, handler: { action in
                         switch action.style{
                         case .Default:
@@ -125,7 +121,7 @@ class LocationCollectionViewController: UIViewController, UICollectionViewDataSo
     /// :param: section (here only one section exists)
     /// :returns: number of Memes
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return StudentLocationRepository.locations.count
+        return StudentLocationRepository.getLocationCount(collectionActivityIndicator)
     }
     
     /// fill cell with content (Memed image)
@@ -190,7 +186,8 @@ class LocationCollectionViewController: UIViewController, UICollectionViewDataSo
     /// reload button pressed
     /// :param: sender reload button
     @IBAction func reloadButtonPressed(sender: UIBarButtonItem) {
-        //self.locationCollectionView.reloadData()
+        StudentLocationRepository.reset()
+        self.locationsCollectionView.reloadData()
     }
 
     /// cell was selected and web browser window is opened with the media URL of the selected location

@@ -7,16 +7,17 @@
 //
 import Foundation
 
+/// Helper functions to access Udacity API
 class UdacityClient : NSObject {
     /* Shared session */
     var session: NSURLSession
     
-    /* Configuration object */
-    var config = UdacityConfig()
-    
     /* Authentication state */
     var sessionID : String? = nil
     var userID : String? = nil
+    
+    /// user's public data
+    var userData : UserData!
     
     override init() {
         session = NSURLSession.sharedSession()

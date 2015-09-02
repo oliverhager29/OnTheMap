@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// constants used by Udacity API
 extension UdacityClient {
     
     // MARK: - Constants

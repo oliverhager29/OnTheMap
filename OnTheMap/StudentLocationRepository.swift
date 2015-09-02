@@ -16,8 +16,30 @@ class StudentLocationRepository {
     /// get student locations with in a distance
     /// :param: fromLocation from student location
     /// :param: withInDistance distance in miles
-    static func getLocations(fromLat: Double, fromLong: Double, withInDistance: Double) -> [StudentLocation] {
+    static func getLocations(fromLat: Double, fromLong: Double, withInDistance: Double, activityIndicator: UIActivityIndicatorView) -> [StudentLocation] {
         var result: [StudentLocation] = []
+        var errorOccurred : Bool = false
+        var completed : Bool = false
+        ParseClient.sharedInstance().getStudentLocations(0, limit: 1000) { locations, error in
+            if let locations = locations {
+                StudentLocationRepository.locations = locations
+                completed = true
+                dispatch_async(dispatch_get_main_queue()) {
+                    activityIndicator.stopAnimating()
+                }
+            } else {
+                StudentLocationRepository.locations = []
+                errorOccurred = true
+                completed = true
+                println(error)
+                dispatch_async(dispatch_get_main_queue(), {
+                    activityIndicator.stopAnimating()
+                })
+            }
+        }
+        while(!completed) {
+            // wait
+        }
         for location in StudentLocationRepository.locations {
             if(distance(fromLat, fromLongitude: fromLong, toLatitude: location.latitude!, toLongitude: location.longitude!) <= withInDistance) {
                 result.append(location)

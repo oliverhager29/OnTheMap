@@ -25,18 +25,6 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
     /// error alert when having a problem getting the locations of the other students
     var getStudentLocationsAlert: UIAlertController!
     
-    /// user's first name
-    var userFirstName : String!
-    
-    /// user's last name
-    var userLastName : String!
-    
-    /// user's location latitude
-    var latitude : Double!
-    
-    /// user's location longitude
-    var longitude : Double!
-    
     /// distance in miles
     @IBOutlet weak var distanceTextField: UITextField!
     
@@ -61,8 +49,8 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
             if(locationManager.location != nil) {
-                longitude = locationManager.location!.coordinate.longitude
-                latitude = locationManager.location!.coordinate.latitude
+                UdacityClient.sharedInstance().userData.longitude = locationManager.location!.coordinate.longitude
+                UdacityClient.sharedInstance().userData.latitude = locationManager.location!.coordinate.latitude
             }
         }
         else{
@@ -75,8 +63,10 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
     /// check whether the location for the current logged in user already has been posted and show a warning alert if so
     func checkPostLocation() {
         self.tableActivityIndicator.startAnimating()
-        if self.userFirstName != nil && self.userLastName != nil {
-            ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 100, criteriaJSON: "{ \"firstName\" : \"\(self.userFirstName!)\", \"lastName\" : \"\(self.userLastName!)\" }") { locations, error in
+        if let userData = UdacityClient.sharedInstance().userData {
+            let firstName = userData.firstName
+            let lastName = userData.lastName
+            ParseClient.sharedInstance().getStudentLocationsByCriteria(0, limit: 100, criteriaJSON: "{ \"firstName\" : \"\(firstName)\", \"lastName\" : \"\(lastName)\" }") { locations, error in
                 if let locations = locations {
                     if locations.count > 0 {
                         dispatch_async(dispatch_get_main_queue()) {
@@ -119,10 +109,10 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableActivityIndicator.startAnimating()
         UdacityClient.sharedInstance().getPublicUserData()  { (result, errorString) in
             if let result = result as UserData! {
-                self.userFirstName = result.firstName
-                self.userLastName = result.lastName
+                let firstName = result.firstName
+                let lastName = result.lastName
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.overwriteAlert = UIAlertController(title: "Error", message: "User \(self.userFirstName) \(self.userLastName) Has Already Posted a Student Location. Would You Like to Overwrite Their Location?", preferredStyle: UIAlertControllerStyle.Alert)
+                    self.overwriteAlert = UIAlertController(title: "Error", message: "User \(firstName) \(lastName) Has Already Posted a Student Location. Would You Like to Overwrite Their Location?", preferredStyle: UIAlertControllerStyle.Alert)
                     self.overwriteAlert.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.Default, handler: { action in
                         switch action.style{
                         case .Default:
@@ -153,8 +143,8 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
     /// :param: section section in table (there is only one)
     /// :returns: number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(self.latitude != nil && self.longitude != nil && self.distanceTextField.text.toInt() != nil) {
-            return StudentLocationRepository.getLocations(self.latitude!, fromLong: self.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!)).count
+        if(UdacityClient.sharedInstance().userData.latitude != nil && UdacityClient.sharedInstance().userData.longitude != nil && self.distanceTextField.text.toInt() != nil) {
+            return StudentLocationRepository.getLocations(UdacityClient.sharedInstance().userData.latitude!, fromLong: UdacityClient.sharedInstance().userData.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!), activityIndicator: tableActivityIndicator).count
         }
         else {
             return StudentLocationRepository.getLocationCount(tableActivityIndicator)
@@ -169,8 +159,8 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
         /* Get cell type */
         let cellReuseIdentifier = "LocationDistanceTableViewCell"
         var location: StudentLocation
-        if(self.latitude != nil && self.longitude != nil && self.distanceTextField.text.toInt() != nil) {
-            let locations = StudentLocationRepository.getLocations(self.latitude!, fromLong: self.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!))
+        if(UdacityClient.sharedInstance().userData.latitude != nil && UdacityClient.sharedInstance().userData.longitude != nil && self.distanceTextField.text.toInt() != nil) {
+            let locations = StudentLocationRepository.getLocations(UdacityClient.sharedInstance().userData.latitude!, fromLong: UdacityClient.sharedInstance().userData.longitude!, withInDistance: Double(self.distanceTextField.text.toInt()!), activityIndicator: tableActivityIndicator)
             location = locations[indexPath.row]
         }
         else {
@@ -241,6 +231,7 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
     /// reload button pressed
     /// :param: sender reload button
     @IBAction func reloadButtonPressed(sender: UIBarButtonItem) {
+        StudentLocationRepository.reset()
         self.locationsTableView.reloadData()
     }
     
@@ -252,15 +243,12 @@ class DistanceTableViewController: UIViewController, UITableViewDelegate, UITabl
         let span2 = MKCoordinateSpanMake(1, 1)
         let long = locValue.longitude;
         let lat = locValue.latitude;
-        println(long);
-        println(lat);
         let loadlocation = CLLocationCoordinate2D(
             latitude: lat, longitude: long
             
         )
-        
-        self.latitude = lat
-        self.longitude = long
+        UdacityClient.sharedInstance().userData.latitude = lat
+        UdacityClient.sharedInstance().userData.longitude = long
         locationManager.stopUpdatingLocation();
     }
     

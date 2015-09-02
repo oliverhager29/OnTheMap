@@ -8,13 +8,11 @@
 
 import Foundation
 
+/// Helper functions to access Parse API
 class ParseClient : NSObject {
     
     /* Shared session */
     var session: NSURLSession
-    
-    /* Configuration object */
-    var config = ParseConfig()
     
     /* Authentication state */
     var sessionID : String? = nil

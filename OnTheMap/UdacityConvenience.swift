@@ -92,7 +92,10 @@ extension UdacityClient {
             }
             else {
                 if let user: AnyObject = JSONResult.valueForKey(UdacityClient.JSONResponseKeys.User) {
-                    var userData = UserData()
+                    if(UdacityClient.sharedInstance().userData == nil) {
+                        UdacityClient.sharedInstance().userData = UserData()
+                    }
+                    var userData = UdacityClient.sharedInstance().userData
                     if let username = user.valueForKey(UdacityClient.JSONResponseKeys.User) as? String {
                         userData.username = username
                     }

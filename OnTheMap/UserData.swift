@@ -26,6 +26,12 @@ struct UserData {
     /// email
     var email : String
     
+    /// user's latitude
+    var latitude : Double!
+    
+    /// user's longitude
+    var longitude : Double!
+    
     /// initalize fields with empty values
     init() {
         self.username = ""

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A407DF601B369189001674E3 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A407DF5F1B369189001674E3 /* ParseClient.swift */; };
-		A407DF621B3692A5001674E3 /* ParseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A407DF611B3692A5001674E3 /* ParseConfig.swift */; };
 		A407DF641B3694F6001674E3 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A407DF631B3694F6001674E3 /* ParseConstants.swift */; };
 		A407DF661B369557001674E3 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A407DF651B369557001674E3 /* ParseConvenience.swift */; };
 		A407DF691B379F8F001674E3 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A407DF681B379F8F001674E3 /* StudentLocation.swift */; };
@@ -26,7 +25,6 @@
 		A45990091B85692D009C1A99 /* FacebookClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45990081B85692D009C1A99 /* FacebookClient.swift */; };
 		A48036E11B53485E0063DF45 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48036E01B53485E0063DF45 /* UserData.swift */; };
 		A48684C31B27D70600585152 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48684C21B27D70600585152 /* UdacityClient.swift */; };
-		A48684C51B27D8DE00585152 /* UdacityConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48684C41B27D8DE00585152 /* UdacityConfig.swift */; };
 		A48684C71B27DB3C00585152 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48684C61B27DB3C00585152 /* UdacityConstants.swift */; };
 		A48684C91B27DC2800585152 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48684C81B27DC2800585152 /* UdacityConvenience.swift */; };
 		A49369FB1B706886004CE026 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49369FA1B706886004CE026 /* TableViewController.swift */; };
@@ -50,7 +48,6 @@
 
 /* Begin PBXFileReference section */
 		A407DF5F1B369189001674E3 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
-		A407DF611B3692A5001674E3 /* ParseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConfig.swift; sourceTree = "<group>"; };
 		A407DF631B3694F6001674E3 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		A407DF651B369557001674E3 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		A407DF681B379F8F001674E3 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
@@ -72,7 +69,6 @@
 		A45990081B85692D009C1A99 /* FacebookClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookClient.swift; sourceTree = "<group>"; };
 		A48036E01B53485E0063DF45 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A48684C21B27D70600585152 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
-		A48684C41B27D8DE00585152 /* UdacityConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConfig.swift; sourceTree = "<group>"; };
 		A48684C61B27DB3C00585152 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		A48684C81B27DC2800585152 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		A49369FA1B706886004CE026 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -211,11 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				A48684C21B27D70600585152 /* UdacityClient.swift */,
-				A48684C41B27D8DE00585152 /* UdacityConfig.swift */,
 				A48684C61B27DB3C00585152 /* UdacityConstants.swift */,
 				A48684C81B27DC2800585152 /* UdacityConvenience.swift */,
 				A407DF5F1B369189001674E3 /* ParseClient.swift */,
-				A407DF611B3692A5001674E3 /* ParseConfig.swift */,
 				A407DF631B3694F6001674E3 /* ParseConstants.swift */,
 				A407DF651B369557001674E3 /* ParseConvenience.swift */,
 				A45990081B85692D009C1A99 /* FacebookClient.swift */,
@@ -347,10 +341,8 @@
 				A4A1B74A1B901E5900C6934A /* DistanceTableViewController.swift in Sources */,
 				A407DF661B369557001674E3 /* ParseConvenience.swift in Sources */,
 				A407DF641B3694F6001674E3 /* ParseConstants.swift in Sources */,
-				A407DF621B3692A5001674E3 /* ParseConfig.swift in Sources */,
 				A4FCC7181B8C203500D07519 /* StudentLocationRepository.swift in Sources */,
 				A44A6A011B6DAC54004290C6 /* LoginViewController.swift in Sources */,
-				A48684C51B27D8DE00585152 /* UdacityConfig.swift in Sources */,
 				A452072B1B8044AD0089EEED /* LocationViewController.swift in Sources */,
 				A48684C91B27DC2800585152 /* UdacityConvenience.swift in Sources */,
 				A408CCDB1B4A27190039F7E7 /* MapViewController.swift in Sources */,
@@ -482,9 +474,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/oliverhager/Downloads/FacebookSDKs-iOS-20150813",
 					"$(PROJECT_DIR)",
 				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,11 +488,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/oliverhager/Downloads/FacebookSDKs-iOS-20150813",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
