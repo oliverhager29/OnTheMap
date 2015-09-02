@@ -156,10 +156,13 @@ class MapViewController: UIViewController,MKMapViewDelegate {
             self.mapActivityIndicator.startAnimating()
             
         })
-        ParseClient.sharedInstance().getStudentLocations(0, limit: 100) { locations, error in
+        ParseClient.sharedInstance().getStudentLocations(0, limit: 4000) { locations, error in
             if let locations = locations {
                 StudentLocationRepository.locations = locations
                 dispatch_async(dispatch_get_main_queue()) {
+                    if let oldAnnotations : [AnyObject] = self.mapView.annotations {
+                        self.mapView.removeAnnotations(oldAnnotations)
+                    }
                     self.addAnnotations(self.mapView, locations: locations)
                     self.mapView.delegate = self
                     self.mapActivityIndicator.stopAnimating()

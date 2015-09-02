@@ -51,8 +51,8 @@
                                     <outlet property="delegate" destination="tZ6-WC-YH6" id="YjY-dh-fos"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8bH-vn-o31">
-                                <rect key="frame" x="0.0" y="290" width="600" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8bH-vn-o31">
+                                <rect key="frame" x="0.0" y="290" width="37" height="37"/>
                                 <color key="backgroundColor" red="0.74724014949999995" green="0.74724014949999995" blue="0.74724014949999995" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -246,8 +246,10 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NVd-Gb-hXb">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NVd-Gb-hXb">
+                                <rect key="frame" x="290" y="290" width="37" height="37"/>
+                                <color key="backgroundColor" red="0.74724014949999995" green="0.74724014949999995" blue="0.74724014949999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="contentStretch" x="1.3877787807814457e-17" y="0.0" width="1" height="1"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -553,7 +555,7 @@
                                     <outlet property="delegate" destination="ITY-Ce-RGv" id="nvz-02-at4"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZGX-Ow-6C3">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZGX-Ow-6C3">
                                 <rect key="frame" x="0.0" y="58" width="600" height="484"/>
                                 <color key="backgroundColor" red="0.74724014949999995" green="0.74724014949999995" blue="0.74724014949999995" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -630,8 +632,8 @@
                                     <outlet property="delegate" destination="2kj-H3-Kkx" id="Hmg-Re-WWY"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3CW-53-bNZ">
-                                <rect key="frame" x="-3" y="290" width="605" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="3CW-53-bNZ">
+                                <rect key="frame" x="-3" y="290" width="37" height="37"/>
                                 <color key="backgroundColor" red="0.74724014949999995" green="0.74724014949999995" blue="0.74724014949999995" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter distance in miles from phone location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I24-4e-N9o">
@@ -678,7 +680,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lsF-wD-aoJ"/>
-        <segue reference="hFH-Hw-LyG"/>
-        <segue reference="gMy-vl-C6b"/>
+        <segue reference="hO6-ww-aBM"/>
+        <segue reference="hNl-gr-IC6"/>
     </inferredMetricsTieBreakers>
 </document>
